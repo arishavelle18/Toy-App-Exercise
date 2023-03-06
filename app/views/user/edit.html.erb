@@ -1,0 +1,22 @@
+<h1>Edit User</h1>
+
+<%= form_with(model: @user, data: { turbo: false }) do |f| %>
+     <% if @user.errors.any? %>
+        <h2><%= pluralize(@user.errors.size, 'error') %> prevented this product from being saved:</h2>
+        <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+        <% end %>
+        </ul>
+     <% end %>
+    <%= f.label :name%>
+    <%= f.text_field :name%><br><br>
+    <%= f.label :email %>
+    <%= f.text_field :email%><br><br>
+    
+    <%= f.submit %> 
+<% end %>
+<br>
+
+
+<p><%= link_to "Back",index_path %></p>
