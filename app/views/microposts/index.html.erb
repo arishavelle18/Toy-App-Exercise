@@ -18,6 +18,10 @@
   </tr>
   <% end %>
 </table>
+<% if not @microposts.exists? %>
+<h2 class="text-center">Data not found</h2>
+<% end %>
 <br><br>
 <%= link_to "New Micropost",micropost_new_post_path, :class => "btn btn-success"%><br><br>
+
 <p><%= link_to 'Go to User',index_path, :class => "btn btn-info"%></p>

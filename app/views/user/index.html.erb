@@ -22,6 +22,9 @@
   </tr>
   <% end %>
 </table>
+<% if not @users.exists? %>
+<h2 class="text-center">Data not found</h2>
+<% end %>
 <br><br>
 <p><%= link_to 'New User',new_path,{:class => 'btn btn-success'}%></p><br>
 <p><%= link_to 'Go to Micropost',microposts_path,{:class => 'btn btn-info'}%></p>
