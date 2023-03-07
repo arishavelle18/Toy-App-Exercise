@@ -5,12 +5,17 @@ class MicropostsController < ApplicationController
     def index
         # render the all the data
         @microposts= Micropost.all
-        
+        @users = User.all.count
     end
     # navigate to form
     def new
         # create form
         @micropost = Micropost.new
+        # @users = User.all
+        # @count = [["None","0"]]
+        # @users.each do |user|
+        # @count.push([user.name,user.id])
+        # end
     end
     # create the post
     def create

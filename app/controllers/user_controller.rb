@@ -46,9 +46,9 @@ class UserController < ApplicationController
     def destroy
         # find thee id of it
         @user = User.find(params[:id])
-        @micropost = @user.id
-        @micropost = Micropost.where(user_id: @micropost)
-        @micropost.delete_all
+        # @micropost = @user.id
+        # @micropost = Micropost.where(user_id: @micropost)
+        # @micropost.delete_all
         @user.destroy
         flash[:notice] = "User was successfully destroyed."
         redirect_to index_path

@@ -9,6 +9,8 @@
  <% @microposts.each do |micropost| %>
   <tr>
     <td scope="row"><%= micropost.content%></td>
+  
+    
     <td scope="row"><%= micropost.user.name%></td>
     <td scope="row">
         <%= link_to "Show",micropost_path(micropost),:class => "btn btn-primary"%>
@@ -22,6 +24,8 @@
 <h2 class="text-center">Data not found</h2>
 <% end %>
 <br><br>
-<%= link_to "New Micropost",micropost_new_post_path, :class => "btn btn-success"%><br><br>
 
+<% if @users != 0%>
+<%= link_to "New Micropost",micropost_new_post_path, :class => "btn btn-success"%><br><br>
+<%end%>
 <p><%= link_to 'Go to User',index_path, :class => "btn btn-info"%></p>
