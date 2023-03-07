@@ -1,21 +1,27 @@
 <h1>Users</h1>
 
-<table>
+<table class="table">
     <tr>
-        <th>Name</th>
-        <th>Email</th>
-        <th></th>
+        <th scope="col">Id</th> 
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Action</th>
+        
     </tr>
+    <% @count = 0 %>
  <% @users.each do |user| %>
   <tr>
-    <td><%= user.name%></td>
-    <td><%= user.email%></td>
-    <td>
-        <%= link_to "Show",user_path(user)%>
-        <%= link_to "Edit",edit_path(user)%>
-        <%= link_to 'Destroy', user_delete_path(user), method: :delete %>
+    <td scope="row"><%=@count += 1 %></td>
+    <td scope="row"><%= user.name%></td>
+    <td scope="row"><%= user.email%></td>
+    <td scope="row">
+        <%= link_to "Show",user_path(user),{:class => 'btn btn-primary'}%>
+        <%= link_to "Edit",edit_path(user),{:class => 'btn btn-secondary'}%>
+        <%= link_to 'Destroy', user_delete_path(user), method: :delete, :class => 'btn btn-success' %>
     </td>
   </tr>
   <% end %>
 </table>
-<p><%= link_to 'New User',new_path%></p>
+<br><br>
+<p><%= link_to 'New User',new_path,{:class => 'btn btn-success'}%></p><br>
+<p><%= link_to 'Go to Micropost',microposts_path,{:class => 'btn btn-info'}%></p>

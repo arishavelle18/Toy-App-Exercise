@@ -45,8 +45,8 @@ class MicropostsController < ApplicationController
     # delete the acc
     def destroy
         # find thee id of it
-        @user = User.find(params[:id])
-        @user.destroy
+        @micropost = Micropost.find(params[:id])
+        @micropost.destroy
         flash[:notice] = "User was successfully destroyed."
         redirect_to microposts_path
     end

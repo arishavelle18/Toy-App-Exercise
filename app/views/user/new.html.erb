@@ -10,13 +10,13 @@
         </ul>
      <% end %>
     <%= f.label :name%>
-    <%= f.text_field :name %><br><br>
+    <%= f.text_field :name ,class:"form-control"%><br><br>
     <%= f.label :email %>
-    <%= f.text_field :email%><br><br>
+    <%= f.text_field :email,class:"form-control"%><br><br>
     
-    <%= f.submit %> 
+    <%= f.submit({:class => 'btn btn-success'})%> 
 <% end %>
 <br>
 
 
-<p><%= link_to "Back",index_path %></p>
+<p><%= link_to "Back",index_path ,{:class => 'btn btn-danger'}%></p>

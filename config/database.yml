@@ -85,6 +85,4 @@ test:
 #
 production:
   <<: *default
-  database: no_scafold_production
-  username: no_scafold
-  password: <%= ENV["NO_SCAFOLD_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>
