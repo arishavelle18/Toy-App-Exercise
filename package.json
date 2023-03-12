@@ -1,0 +1,8 @@
+{
+  "name": "no_scafold",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:arishavelle18/Toy-App-Exercise.git",
+  "author": "arishavelle18 <arishavelle18@yahoo.com>",
+  "license": "MIT"
+}

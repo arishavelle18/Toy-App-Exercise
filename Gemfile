@@ -5,7 +5,7 @@ ruby "3.2.0"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.4", ">= 7.0.4.2"
-
+gem 'bootstrap-sass'
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
@@ -69,4 +69,9 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "webdrivers"
+  gem 'rails-controller-testing'
+  gem "minitest"
+  gem "minitest-reporters"
+  gem "guard"
+  gem "guard-minitest"
 end

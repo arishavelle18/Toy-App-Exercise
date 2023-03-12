@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  
+  
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   root 'user#index'
   # for users
@@ -37,4 +39,10 @@ Rails.application.routes.draw do
 
   resource:microposts
   
+  # routes for sign up
+  get 'register/' => "registers#new", as:'register'
+  
+
+
+
 end
