@@ -10,7 +10,9 @@
  <% @microposts.each do |micropost| %>
   <tr>
     <td scope="row"><%=link_to micropost.content,profile_path(micropost.user_id),:class =>"nav-link"%></td>
-    
+    <% if micropost.image.attached? %>
+        <td><%= image_tag(micropost.image_as_thumbnail) %></td>
+    <% end %>
     <td scope="row"><%= micropost.user.name%></td>
     <td scope="row">
         <%= link_to "Show",micropost_path(micropost),:class => "btn btn-primary"%>

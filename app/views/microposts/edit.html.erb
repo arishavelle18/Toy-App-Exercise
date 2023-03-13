@@ -17,6 +17,9 @@
         <%= f.text_area :content ,class:"form-control"%>
     </p>
     <p>
+        <%= f.file_field :image %><br><br>
+    </p>
+    <p>
         <input type="hidden" name="micropost[user_id]" value="<%= session[:user_id] %>"]>
     </p>
     <p>
