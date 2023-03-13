@@ -1,4 +1,5 @@
 class MicropostsController < ApplicationController
+    before_action :require_user_logged_in!
     # add messaage
     # add_flash_types :info, :error, :warning
     # list all the data
@@ -9,13 +10,7 @@ class MicropostsController < ApplicationController
     end
     # navigate to form
     def new
-        # create form
         @micropost = Micropost.new
-        # @users = User.all
-        # @count = [["None","0"]]
-        # @users.each do |user|
-        # @count.push([user.name,user.id])
-        # end
     end
     # create the post
     def create
@@ -33,11 +28,19 @@ class MicropostsController < ApplicationController
     end
     
     def edit
+        @micropost = Micropost.find_by(id:params[:id])
+        if Current.user.id != @micropost[:user_id]
+            redirect_to microposts_path,:alert => "Unauthorize Access"
+        end
         @micropost = Micropost.find(params[:id])
     
     end
     
     def update
+        @micropost = Micropost.find_by(id:params[:id])
+        if Current.user.id != @micropost[:user_id]
+            redirect_to microposts_path,:alert => "Unauthorize Access"
+        end
         @micropost = Micropost.find(params[:id])
         if @micropost.update(micropost_params)
             flash[:notice] = "Micropost was successfully updated"
@@ -49,11 +52,17 @@ class MicropostsController < ApplicationController
    
     # delete the acc
     def destroy
-        # find thee id of it
-        @micropost = Micropost.find(params[:id])
-        @micropost.destroy
-        flash[:notice] = "User was successfully destroyed."
-        redirect_to microposts_path
+        
+        @micropost = Micropost.find_by(id:params[:id])
+        if  Current.user.id != @micropost[:user_id]
+            redirect_to microposts_path,:alert => "Unauthorize Access"
+        else
+            # find thee id of it
+            @micropost = Micropost.find(params[:id])
+            @micropost.destroy
+            flash[:notice] = "User was successfully destroyed."
+            redirect_to microposts_path
+        end
     end
 
 

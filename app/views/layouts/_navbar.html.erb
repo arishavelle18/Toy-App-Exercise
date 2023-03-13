@@ -1,0 +1,34 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <% if Current.user %>
+      <%= link_to "Toy App",microposts_path,:class => "navbar-brand" %>
+    <% else %>
+      <%= link_to "Toy App",login_path,:class => "navbar-brand" %>
+    <% end %>
+    
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <% if Current.user %>
+        <li class="nav-item">
+            <%= link_to "Micropost",microposts_path,:class => "nav-link active" %>
+        </li>
+        <% end %>
+      </ul>
+      <ul class=" d-flex navbar-nav ms-auto mb-2 mb-lg-0">
+            <% if Current.user %>
+              <li class="nav-item">
+                <%=link_to Current.user.email,profile_path(Current.user.id),:class => "nav-link" %>
+              </li>
+              <li class="nav-item"> <%= link_to 'Logout', logout_path, method: :delete, :class => 'btn btn-outline-secondary',:onclick => "return confirm('Are you sure you want to delete this post?')" %>
+</li>
+           <% else %>
+              <li class="nav-item"><%= link_to "Login", login_path,:class =>"nav-link" %></li>
+              <li class="nav-item"><%= link_to "Sign Up",register_path,:class=>"nav-link" %></li>
+            <% end %>
+          </ul>
+    </div>
+  </div>
+</nav>

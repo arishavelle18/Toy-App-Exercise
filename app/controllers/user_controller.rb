@@ -1,4 +1,5 @@
 class UserController < ApplicationController
+    before_action :require_user_logged_in!
     def index
         @users = User.all.order(:id)
         

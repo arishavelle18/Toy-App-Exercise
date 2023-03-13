@@ -1,7 +1,7 @@
 <% provide(:title,"Create Micropost") %>
 <h1>Add Micropost</h1>
 
-<%= form_for @micropost, url: microposts_path,data: { turbo: false } do |f|%>
+<%= form_for @micropost, url: profile_path,data: { turbo: false } do |f|%>
     <% if @micropost.errors.any?%>
     <div class="alert alert-danger">
         The form contains <%= pluralize(@micropost.errors.count, "error") %>.
@@ -17,9 +17,7 @@
         <%= f.text_area :content ,class:"form-control"%>
     </p>
     <p>
-    
- 
-        <input type="hidden" name="micropost[user_id]" value="<%= session[:user_id] %>"]>
+        <input type="hidden" name="micropost[user_id]" value="<%= session[:user_id] %>">
     </p>
     <p>
         <%= f.submit({:class => 'btn btn-primary'})%>

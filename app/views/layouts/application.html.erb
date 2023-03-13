@@ -2,12 +2,10 @@
 <html>
  <%= render "layouts/head" %>
   
-  <body class="container">  
-  <% if notice %>
-    <p class="alert alert-success"><%= notice %></p>
-  <% end %>
-
+  <body>  
+    <%= render "layouts/navbar" %>
     <div class="container">
+      <%= render "layouts/flash_message" %>
       <%= yield %>
     </div>
     

@@ -3,5 +3,8 @@
 <p><strong>User</strong>:<%= @micropost.user_id %></p>
 
 
+<% if Current.user.id == @micropost.user_id %>
 <%= link_to "Edit",edit_micropost_path,:class =>"btn btn-success"%> | 
+<% end %>
+
 <%= link_to "Back",microposts_path,:class =>"btn btn-danger"%>

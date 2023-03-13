@@ -1,5 +1,7 @@
 <h1>Users</h1>
-
+<% if Current.user %>
+  <%= Current.user.name %>
+<% end  %>
 <table class="table">
     <tr>
         <th scope="col">Id</th> 

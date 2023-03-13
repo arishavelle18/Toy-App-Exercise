@@ -17,8 +17,7 @@
         <%= f.text_area :content ,class:"form-control"%>
     </p>
     <p>
-        <%= f.label :user_id%><br>
-        <%= f.number_field :user_id ,class:"form-control"%>
+        <input type="hidden" name="micropost[user_id]" value="<%= session[:user_id] %>"]>
     </p>
     <p>
         <%= f.submit({:class => 'btn btn-primary'})%>
