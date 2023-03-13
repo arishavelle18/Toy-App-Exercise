@@ -2,15 +2,7 @@
 <h1>Edit Micropost</h1>
 
 <%= form_for @micropost, url: micropost_path(@micropost),data: { turbo: false } do |f|%>
-    <% if @micropost.errors.any?%>
-    <div class="alert alert-danger">
-        The form contains <%= pluralize(@micropost.errors.count, "error") %>.
-        
-        <% @micropost.errors.full_messages.each do |msg|%>
-            <div class="alert alert-danger"><%= msg %></div>
-        <% end %>
-    </div
-    <% end %>
+    <%= render "layouts/form_error",:form =>f %>
     
     <p>
         <%= f.label :content%><br>

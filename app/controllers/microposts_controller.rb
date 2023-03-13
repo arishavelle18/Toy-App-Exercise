@@ -15,11 +15,31 @@ class MicropostsController < ApplicationController
     # create the post
     def create
         @micropost = Micropost.new(micropost_params)
-        if @micropost.save
-            flash[:notice] = "User was successfully created."
-            redirect_to microposts_path
+        # check if the image is present 
+        if params[:micropost][:image].present?
+            
+            # check if the image has a file extension of jpeg and png
+            if !params[:micropost][:image].content_type.in?(%w[image/jpeg image/png])
+                # add error if the image is not supported
+                @micropost.errors.add(:file,"extension is not supported it must be jpeg or png.")
+                render :new
+            else
+                # this portion if the image is supported
+                if @micropost.save
+                        flash[:notice] ="Micropost was successfully created"
+                        redirect_to microposts_path
+                else
+                        render :new
+                end
+            end
         else
-            render :new
+             # this portion if the image is not present
+            if @micropost.save
+                flash[:notice] = "Micropost was successfully created"
+                redirect_to microposts_path
+            else
+                render :new
+            end
         end
     end
 
@@ -42,11 +62,36 @@ class MicropostsController < ApplicationController
             redirect_to microposts_path,:alert => "Unauthorize Access"
         end
         @micropost = Micropost.find(params[:id])
-        if @micropost.update(micropost_params)
-            flash[:notice] = "Micropost was successfully updated"
-            redirect_to micropost_path(@micropost)
+        # check if the image is present or not
+        if params[:micropost][:image].present?
+            # render plain:params[:micropost][:image].content_type.in?(%w[image/jpeg image/png])
+
+            # check the image if the file extension is jpeg or png
+
+            if !params[:micropost][:image].content_type.in?(%w[image/jpeg image/png])
+                # @micropost = Micropost.new(micropost_params)
+                # @micropost.errors.push["File extension is not supported it must be jpeg or png."]
+                
+                #add error
+                @micropost.errors.add(:file,"extension is not supported it must be jpeg or png.")
+                render :edit
+            else
+                # if the image is not present we can just update is
+                if @micropost.update(micropost_params)
+                        flash[:notice] = "Micropost was successfully updated"
+                        redirect_to microposts_path
+                else
+                        render :edit
+                end
+            end
         else
-            render :edit
+            # @micropost = Micropost.new(micropost_params)
+            if @micropost.update(micropost_params)
+                flash[:notice] = "Micropost was successfully updated"
+                redirect_to micropost_path(@micropost)
+            else
+                render :edit
+            end
         end
     end
    

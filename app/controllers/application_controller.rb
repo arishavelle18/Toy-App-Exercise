@@ -11,5 +11,9 @@ class ApplicationController < ActionController::Base
     def require_user_logged_in!
         redirect_to login_path,:alert => "You must be signed in to view that" if Current.user.nil?
     end
+    # add restriction
+    def require_user_not_logged_in!
+        redirect_to microposts_path,:alert => "You must be signed out to view that" if !Current.user.nil?
+    end
 
 end

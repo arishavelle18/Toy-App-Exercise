@@ -4,16 +4,23 @@
 <h3>List of Micropost</h3>
 <table class="table">
     <tr>
-        <th scope="col">Content</th>
+         <th scope="col">Content</th>
+        <th scope="col">Image</th>
         <th scope="col">Username</th>
-        <th scope="col"></th>
+        <th scope="col">Action</th>
     </tr>
   
  <% @microposts.each do |micropost| %>
   <tr>
     <td scope="row"><%= micropost.content%></td>
   
-    
+    <% if micropost.image.content_type.in?(%w[image/jpeg image/png]) %>
+      <% if micropost.image.attached? %>
+          <td><%= image_tag(micropost.image_as_thumbnail) %></td>
+      <% end %>
+      <% else %>
+        <td><%= link_to image_tag("no.jpg",alt:"Rails Logo",width:"300px") %></td>
+    <% end %>
     <td scope="row"><%= micropost.user.name%></td>
     <td scope="row">
         <%= link_to "Show",micropost_path(micropost),:class => "btn btn-primary"%>
