@@ -10,7 +10,7 @@ class RegistersController < ApplicationController
     @user = User.create(user_params)
     if @user.save
       session[:user_id] = @user.id
-      redirect_to index_path,notice:"Successfully created account"
+      redirect_to microposts_path,notice:"Successfully created account"
     else
       render :new
     end
