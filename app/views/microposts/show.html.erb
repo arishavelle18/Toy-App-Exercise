@@ -1,8 +1,7 @@
 <% provide(:title,"View Micropost") %>
 <p><strong>Content</strong>:<%= @micropost.content %></p>
-<p><strong>User</strong>:<%= @micropost.user_id %></p>
 
-
+<%= image_tag(@micropost.image_as_thumbnail) %><br><br>
 <% if Current.user.id == @micropost.user_id %>
 <%= link_to "Edit",edit_micropost_path,:class =>"btn btn-success"%> | 
 <% end %>

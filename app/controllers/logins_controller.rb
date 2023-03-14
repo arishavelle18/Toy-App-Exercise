@@ -5,7 +5,6 @@ class LoginsController < ApplicationController
   end
 
   def create
-    
     # check if the params is not present
     if !params[:user].present?
       # @user = User.find_by(email:params[:user][:email])
