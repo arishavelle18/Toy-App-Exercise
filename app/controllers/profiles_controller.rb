@@ -47,6 +47,6 @@ class ProfilesController < ApplicationController
   end
 
     private def profile_params
-      params.require(:micropost).permit(:content,:user_id,:image) 
+      params.require(:micropost).permit(:title,:content,:user_id,:image) 
     end
 end

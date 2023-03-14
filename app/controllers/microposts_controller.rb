@@ -110,8 +110,12 @@ class MicropostsController < ApplicationController
         end
     end
 
+    def indexhello
+        @microposts= Micropost.all
+        @users = User.all.count
+    end
 
     private def micropost_params
-        params.require(:micropost).permit(:content,:user_id,:image) 
+        params.require(:micropost).permit(:title,:content,:user_id,:image) 
     end
 end
