@@ -12,6 +12,7 @@ class LoginsController < ApplicationController
       redirect_to login_path,:alert =>"Invalid email or password"
       # render :new
     else
+      params[:user][:email] = params[:user][:email].downcase
       @user = User.find_by(email:params[:user][:email])
         # check the email in thee storage
       # check if the user is present

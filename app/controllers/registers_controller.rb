@@ -8,7 +8,7 @@ class RegistersController < ApplicationController
   # create sign up
   def create
     # convert the email into lowercase
-    params[:user][:email].downcase
+    params[:user][:email] = params[:user][:email].downcase
     @user = User.create(user_params)
     if @user.save
       session[:user_id] = @user.id
