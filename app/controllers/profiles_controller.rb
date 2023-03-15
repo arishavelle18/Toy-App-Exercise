@@ -1,8 +1,10 @@
 class ProfilesController < ApplicationController
+  before_action :require_user_logged_in!
   def show
     @user = User.find_by(id:params[:id])
     @microposts = @user.microposts
   end
+
   def new
     @micropost = Micropost.new
   end
@@ -35,15 +37,6 @@ class ProfilesController < ApplicationController
            render :new
        end
     end
-
-
-    # @micropost = Micropost.new(profile_params)
-    # if @micropost.save
-    #     flash[:notice] = "User was successfully created."
-    #     redirect_to profile_path(session[:user_id])
-    # else
-    #     render :new
-    # end
   end
 
     private def profile_params

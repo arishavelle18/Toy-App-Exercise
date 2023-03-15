@@ -38,12 +38,4 @@ class LoginsController < ApplicationController
   
   end
 
-# sample
-  def newnew
-    @user = User.new
-  end
-  private def login_params
-    params.require(:user).permit(:email,:password)
-  end
-
 end
