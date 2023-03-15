@@ -2,7 +2,7 @@ class ProfilesController < ApplicationController
   before_action :require_user_logged_in!
   def show
     @user = User.find_by(id:params[:id])
-    @microposts = @user.microposts
+    @microposts = @user.microposts.order(id: :desc)
   end
 
   def new

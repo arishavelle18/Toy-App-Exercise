@@ -5,7 +5,7 @@ class MicropostsController < ApplicationController
     # list all the data
     def index
         # render the all the data
-        @microposts= Micropost.all
+        @microposts= Micropost.all.order(id: :desc)
         @users = User.all.count
     end
     # navigate to form
