@@ -6,8 +6,8 @@ Rails.application.routes.draw do
   root 'logins#new'
   # for users
 
-  # # Defines the root path route ("/")
-  # # load the user action
+  # Defines the root path route ("/")
+  # load the user action
   # get 'users' => 'user#index' , as: "index"
   # # load show action
   # get 'users/:id' => 'user#show' ,constraints: {id:/\d+/}, as:"user"
@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   # get 'users/:id/edit' => 'user#edit', as:"edit"
   # patch 'users/:id' => 'user#update', as:"update"
 
-  # # delete
+  # # # delete
   # delete 'users/:id/delete' => 'user#destroy', as:"user_delete"
   # get 'users/:id/delete' => 'user#destroy'  
  

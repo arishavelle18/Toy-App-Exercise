@@ -12,7 +12,7 @@
         <%= f.text_area :content ,class:"form-control"%>
     </p>
      <p>
-        <%= f.file_field :image,accept:'image/*' %><br><br>
+        <%= f.file_field :images,multiple:true,accept:'image/*' %><br><br>
     </p>
     <p>
         <input type="hidden" name="micropost[user_id]" value="<%= session[:user_id] %>">
