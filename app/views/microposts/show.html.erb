@@ -1,7 +1,10 @@
 <% provide(:title,"View Micropost") %>
-<h1>Title: <%= @micropost.title %></h1>
+
+<h1 class="mt-5">Title: <%= @micropost.title %></h1>
+
 <p><strong>Content</strong>: <%= @micropost.content %></p>
-              <div id="carouselExampleRide<%= @micropost.id %>" class="carousel slide mb-3" style="width:300px" data-bs-ride="true">
+<div class="mb-5">
+    <div id="carouselExampleRide<%= @micropost.id %>" class="carousel slide" style="width:300px;" data-bs-ride="true">
                         <div class="carousel-inner">
                               <% count = 0 %>
                               <% @micropost.images.each do |picture| %>
@@ -36,8 +39,12 @@
                         <% end %>
                         
                       </div>
-<% if Current.user.id == @micropost.user_id %>
-<%= link_to "Edit",edit_micropost_path,:class =>"btn btn-success"%> | 
-<% end %>
 
-<%= link_to "Back",microposts_path,:class =>"btn btn-danger"%>
+
+
+
+</div>
+              <%= link_to "Back",microposts_path,:class =>"btn btn-danger  ml-5"%> 
+<% if Current.user.id == @micropost.user_id %>
+<%= link_to "Edit",edit_micropost_path,:class =>"btn btn-success "%> 
+<% end %>
