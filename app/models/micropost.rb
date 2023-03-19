@@ -18,8 +18,9 @@ class Micropost < ApplicationRecord
         end
     end
     def picture_as_thumbnail(pic)
-        pic.variant(resize_to_limit:[300,300]).processed
-        # pic.variant(resize: "300x300!").processed
+        pic.variant(resize_and_pad: [500, 500, gravity: 'center'])
+        # pic.variant(resize_to_limit:[300,300]).processed
+        # # pic.variant(resize: "300x300!").processed
     end
     
 end
