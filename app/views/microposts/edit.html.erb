@@ -1,25 +1,6 @@
 <% provide(:title,"Edit Micropost") %>
 <h1>Edit Micropost</h1>
 
-<%= form_for @micropost, url: micropost_path(@micropost),data: { turbo: false } do |f|%>
-    <%= render "layouts/form_error",:form =>f %>
-    <p>
-        <%= f.label :title%><br>
-        <%= f.text_field :title ,class:"form-control"%>
-    </p>
-    <p>
-        <%= f.label :content%><br>
-        <%= f.text_area :content ,class:"form-control"%>
-    </p>
-    <p>
-        <%= f.file_field :image %><br><br>
-    </p>
-    <p>
-        <input type="hidden" name="micropost[user_id]" value="<%= session[:user_id] %>"]>
-    </p>
-    <p>
-        <%= f.submit({:class => 'btn btn-primary'})%>
-    </p>
-<%end%>
+<%= render "form",micropost:@micropost %>
 <%= link_to "Back",microposts_path,:class =>"btn btn-danger"%>
 

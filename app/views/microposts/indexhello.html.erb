@@ -1,11 +1,35 @@
-<% provide(:title,"Create Micropost") %>
-<h1>Add Micropost</h1>
+<style>
+#images{
+    width: 50%;
+    position: relative;
+    margin: auto;
+    display: flex;
+    justify-content: space-evenly;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+figure{
+    width: 45%;
+}
+img{
+    width: 100%;
+}
+figcaption{
+    text-align: center;
+    font-size: 2.4vmin;
+    margin-top: 0.5vmin;
+}
 
-<%= render "form",micropost:@micropost %>
+</style>
 
-<%= link_to "Back",microposts_path,:class =>"btn btn-danger"%>
 
-<%# <input type="file" id="file-input" accept="image/png, image/jpeg" onchange="preview()" multiple> %>
+<div class="container">
+        <input type="file" id="file-input" accept="image/png, image/jpeg" onchange="preview()" multiple>
+        <p id="num-of-files">No Files Chosen</p>
+        <div id="images"></div>
+    </div>
+
+
 
 
 <script>

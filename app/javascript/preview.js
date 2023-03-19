@@ -1,14 +1,4 @@
-<% provide(:title,"Create Micropost") %>
-<h1>Add Micropost</h1>
 
-<%= render "form",micropost:@micropost %>
-
-<%= link_to "Back",microposts_path,:class =>"btn btn-danger"%>
-
-<%# <input type="file" id="file-input" accept="image/png, image/jpeg" onchange="preview()" multiple> %>
-
-
-<script>
 let fileInput = document.getElementById("file-input");
 let imageContainer = document.getElementById("images");
 let numOfFiles = document.getElementById("num-of-files");
@@ -33,4 +23,3 @@ function preview(){
         reader.readAsDataURL(i);
     }
 }
-</script>

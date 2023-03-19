@@ -16,11 +16,14 @@ class MicropostsController < ApplicationController
     def create
         @micropost = Micropost.new(micropost_params)
        
-        if @micropost.save
-            flash[:notice] = "Micropost was successfully created"
-            redirect_to microposts_path
-        else
-            render :new
+        respond_to do |format|
+            if @micropost.save
+                flash[:notice] = "Micropost was successfully created"
+                format.html {redirect_to microposts_path}
+                # redirect_to microposts_path
+            else
+                format.html { render :new,status: :unprocessable_entity }
+            end
         end
         
     end
@@ -39,11 +42,11 @@ class MicropostsController < ApplicationController
     end
     
     def update
-        @micropost = Micropost.find_by(id:params[:id])
+        @micropost = Micropost.find_by(user_id:params[:micropost][:user_id])
+        
         if Current.user.id != @micropost[:user_id]
             redirect_to microposts_path,:alert => "Unauthorize Access"
         end
-
         if @micropost.update(micropost_params)
             flash[:notice] = "Micropost was successfully updated"
             redirect_to micropost_path(@micropost)
@@ -68,7 +71,7 @@ class MicropostsController < ApplicationController
     end
 
     def indexhello
-        @microposts= Micropost.all
+        @micropost= Micropost.new
         @users = User.all.count
     end
 

@@ -1,13 +1,41 @@
 <% provide(:title,"View Micropost") %>
 <h1>Title: <%= @micropost.title %></h1>
 <p><strong>Content</strong>: <%= @micropost.content %></p>
- <% if @micropost.image.content_type.in?(%w[image/jpeg image/png]) %>
-      <% if @micropost.image.attached? %>
-          <%= link_to image_tag(@micropost.image_as_thumbnail),@micropost.image_as_thumbnail %><br><br>
-      <% end %>
-      <% else %>
-        <%= link_to image_tag("no.jpg",alt:"No Logo",width:"300px"),image_url('no.jpg') %> <br><br>
-    <% end %>
+              <div id="carouselExampleRide<%= @micropost.id %>" class="carousel slide mb-3" style="width:300px" data-bs-ride="true">
+                        <div class="carousel-inner">
+                              <% count = 0 %>
+                              <% @micropost.images.each do |picture| %>
+                                <% count += 1 %>
+                                <% if count == 1%>
+                                  <div class="carousel-item active">
+                                    <%= image_tag(@micropost.picture_as_thumbnail(picture),:class=>"d-block  img-fluid") %>
+                                    
+                                  </div>
+                                <% else %>
+                                  <div class="carousel-item">
+                                    <%= image_tag(@micropost.picture_as_thumbnail(picture),:class=>"d-block img-fluid") %>
+                                  </div>
+                                <% end %>
+                              
+                              <% end %>
+                        </div>
+                        <% if @micropost.images.count > 1 %>
+                          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleRide<%= @micropost.id %>" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                          </button>
+                          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleRide<%= @micropost.id %>" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                          </button>
+                        <% end %>
+                        <% if count == 0 %>
+                            <div class="carousel-item active">
+                                    <%= image_tag("no.jpg",:class=>"d-block w-100") %>
+                            </div>
+                        <% end %>
+                        
+                      </div>
 <% if Current.user.id == @micropost.user_id %>
 <%= link_to "Edit",edit_micropost_path,:class =>"btn btn-success"%> | 
 <% end %>

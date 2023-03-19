@@ -1,12 +1,27 @@
-<% provide(:title,"Create Micropost") %>
-<h1>Add Micropost</h1>
+<%= form_for @micropost, url: microposts_path,data: { turbo: false } do |f|%>
+    <%= render "layouts/form_error",:form =>f %>
+    <p>
+        <%= f.label :title%><br>
+        <%= f.text_field :title ,class:"form-control"%>
+    </p>
+    <p>
+        <%= f.label :content%><br>
+        <%= f.text_area :content ,class:"form-control"%>
+    </p>
+    <p>
 
-<%= render "form",micropost:@micropost %>
+        <p id="num-of-files">No Files Chosen</p>
+        <%= f.file_field :images,multiple:true,accept:'image/*',id:"file-input",onchange:"preview()"%><br><br>
+        <div id="images"></div>
+    </p>
+    <p>
+        <input type="hidden" name="micropost[user_id]" value="<%= session[:user_id] %>"]>
+    </p>
 
-<%= link_to "Back",microposts_path,:class =>"btn btn-danger"%>
-
-<%# <input type="file" id="file-input" accept="image/png, image/jpeg" onchange="preview()" multiple> %>
-
+    <p>
+        <%= f.submit({:class => 'btn btn-primary'})%>
+    </p>
+<%end%>
 
 <script>
 let fileInput = document.getElementById("file-input");

@@ -75,3 +75,7 @@ group :test do
   gem "guard"
   gem "guard-minitest"
 end
+
+gem "hotwire-rails", "~> 0.1.3"
+
+gem "webpacker", "~> 5.4"

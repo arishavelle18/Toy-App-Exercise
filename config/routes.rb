@@ -57,9 +57,9 @@ Rails.application.routes.draw do
   get 'profile/:id/new' => "profiles#new", as:"profile_post"
   post 'profile/:id/' => "profiles#create"
 
-  # sample
-  get 'newnew/' => 'logins#newnew'
-  get 'indexhello/' => 'microposts#indexhello'
+  # # sample
+  # get 'newnew/' => 'logins#newnew'
+  # get 'indexhello/' => 'microposts#indexhello'
 
 
 end
