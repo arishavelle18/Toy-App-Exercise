@@ -47,4 +47,5 @@
               <%= link_to "Back",microposts_path,:class =>"btn btn-danger  ml-5"%> 
 <% if Current.user.id == @micropost.user_id %>
 <%= link_to "Edit",edit_micropost_path,:class =>"btn btn-success "%> 
+<%= link_to 'Destroy',micropost_delete_path, method: :delete, :onclick => "return confirm('Are you sure you want to delete this post?')" ,:class => "btn btn-danger" %>
 <% end %>
