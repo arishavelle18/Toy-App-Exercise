@@ -284,6 +284,7 @@ DEPENDENCIES
   puma (~> 5.0)
   rails (~> 7.0.4, >= 7.0.4.2)
   rails-controller-testing
+  ruby-vips
   selenium-webdriver
   sprockets-rails
   stimulus-rails

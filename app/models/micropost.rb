@@ -18,7 +18,8 @@ class Micropost < ApplicationRecord
         end
     end
     def picture_as_thumbnail(pic)
-        pic.variant(resize: "300x300!").processed
+        pic.variant(resize_to_fill:[300,300]).processed
+        
     end
     
 end
