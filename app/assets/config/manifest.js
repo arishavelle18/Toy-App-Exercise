@@ -4,4 +4,4 @@
 //= link_tree ../../../vendor/javascript .js
 //= link application.js
 //= link importmap.json
-//= link_tree ../builds .js
+
