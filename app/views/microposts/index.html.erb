@@ -25,8 +25,9 @@ object-fit: fit;
                                 <% count += 1 %>
                                 <% if count == 1%>
                                   <div class="carousel-item active embed-responsive embed-responsive-16by9">
-                                    <%= image_tag(micropost.picture_as_thumbnail(picture),:class=>"d-block w-100  card-img-top embed-responsive-item",:style=>"width:300px;height:300px;") %>
-                                  </div>
+                                    <%# <%= image_tag(micropost.picture_as_thumbnail(picture),:class=>"d-block w-100  card-img-top embed-responsive-item",:style=>"width:300px;height:300px;") %>
+                                      <%= image_tag(picture,:class=>"d-block w-100  card-img-top embed-responsive-item",:style=>"width:300px;height:300px;") %>
+                                    </div>
                                 <% else %>
                                   <div class="carousel-item embed-responsive embed-responsive-16by9">
                                     <%= image_tag(micropost.picture_as_thumbnail(picture),:class=>"d-block w-100  card-img-top embed-responsive-item") %>
