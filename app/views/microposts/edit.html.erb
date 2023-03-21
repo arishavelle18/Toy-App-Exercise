@@ -1,6 +1,6 @@
 <% provide(:title,"Edit Micropost") %>
 <h1>Edit Micropost</h1>
 
-<%= render "form",micropost:@micropost %>
+<%= render "form",micropost:@micropost ,set_up:micropost_path%>
 <%= link_to "Back",microposts_path,:class =>"btn btn-danger"%>
 

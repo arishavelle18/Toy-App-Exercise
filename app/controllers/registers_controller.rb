@@ -8,14 +8,18 @@ class RegistersController < ApplicationController
   # create sign up
   def create
     # convert the email into lowercase
-    params[:user][:email] = params[:user][:email].downcase
-    @user = User.create(user_params)
-    if @user.save
-      session[:user_id] = @user.id
-      redirect_to microposts_path,notice:"Successfully created account"
-    else
-      render :new
+    respond_to do |format|
+      params[:user][:email] = params[:user][:email].downcase
+      @user = User.create(user_params)
+      if @user.save
+        session[:user_id] = @user.id
+        flash[:notice] = "Successfully created account"
+        format.html {redirect_to microposts_path}
+      else
+        format.html{ render :new , status: :unprocessable_entity}
+      end
     end
+    
   end
 
   private def user_params

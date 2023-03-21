@@ -79,3 +79,7 @@ end
 gem "hotwire-rails", "~> 0.1.3"
 
 gem "ruby-vips"
+
+gem "jsbundling-rails", "~> 1.1"
+
+gem "esbuild-rails", "~> 0.1.4"

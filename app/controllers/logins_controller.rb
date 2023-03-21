@@ -6,23 +6,24 @@ class LoginsController < ApplicationController
 
   def create
     # check if the params is not present
-    if !params[:user].present?
-      # @user = User.find_by(email:params[:user][:email])
-      # flash[:alert] = "Invalid email or password"
-      redirect_to login_path,:alert =>"Invalid email or password"
-      # render :new
-    else
-      params[:user][:email] = params[:user][:email].downcase
-      @user = User.find_by(email:params[:user][:email])
-        # check the email in thee storage
-      # check if the user is present
-      if @user.present? && @user.authenticate(params[:user][:password])
-        # set the session
-        session[:user_id] = @user.id
-        redirect_to microposts_path,notice:"Logged in successfully"
-      else
+    respond_to do |format|
+      if !params[:user].present?
         flash[:alert] = "Invalid email or password"
-        render :new
+        format.html {redirect_to login_path}
+      else
+        params[:user][:email] = params[:user][:email].downcase
+        @user = User.find_by(email:params[:user][:email])
+        # check the email in thee storage
+        # check if the user is present
+        if @user.present? && @user.authenticate(params[:user][:password])
+          # set the session
+          session[:user_id] = @user.id
+          flash[:notice] = "Logged in successfully"
+          format.html{redirect_to microposts_path}
+        else
+          flash[:alert] = "Invalid email or password"
+          format.html{ render :new , status: :unprocessable_entity}
+        end
       end
     end
   end

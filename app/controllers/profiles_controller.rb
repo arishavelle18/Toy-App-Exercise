@@ -12,13 +12,16 @@ class ProfilesController < ApplicationController
   def create
     @micropost = Micropost.new(profile_params)
     # check if the image is present 
-
-    if @micropost.save
+    respond_to do |format|
+      if @micropost.save
         flash[:notice] = "Micropost was successfully created."
-        redirect_to profile_path(session[:user_id])
-    else
-        render :new
+        format.html { redirect_to profile_path(session[:user_id]) }
+        
+      else
+        format.html {render :new, status: :unprocessable_entity}
+      end
     end
+    
   end
 
     private def profile_params

@@ -1,4 +1,5 @@
-<%= form_for @micropost, url: microposts_path,data: { turbo: false } do |f|%>
+
+<%= form_for @micropost, url: set_up,data: { turbo: true } do |f|%>
     <%= render "layouts/form_error",:form =>f %>
     <p>
         <%= f.label :title%><br>
@@ -10,7 +11,7 @@
     </p>
     <p>
 
-        <p id="num-of-files">No Files Chosen</p>
+       <p id="num-of-files">No Files Chosen</p>
         <%= f.file_field :images,multiple:true,accept:'image/*',id:"file-input",onchange:"preview()"%><br><br>
         <div id="images"></div>
     </p>
@@ -23,29 +24,4 @@
     </p>
 <%end%>
 
-<script>
-let fileInput = document.getElementById("file-input");
-let imageContainer = document.getElementById("images");
-let numOfFiles = document.getElementById("num-of-files");
-
-function preview(){
-    imageContainer.innerHTML = "";
-    numOfFiles.textContent = `${fileInput.files.length} Files Selected`;
-
-    for(i of fileInput.files){
-        let reader = new FileReader();
-        let figure = document.createElement("figure");
-        let figCap = document.createElement("figcaption");
-       
-        figure.appendChild(figCap);
-        reader.onload=()=>{
-            let img = document.createElement("img");
-            img.setAttribute("src",reader.result);
-            img.setAttribute("alt","Not an image");
-            figure.insertBefore(img,figCap);
-        }
-        imageContainer.appendChild(figure);
-        reader.readAsDataURL(i);
-    }
-}
-</script>
+<%= javascript_include_tag("preview.js") %>

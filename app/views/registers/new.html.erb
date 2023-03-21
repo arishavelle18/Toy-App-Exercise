@@ -11,18 +11,18 @@
           </div>
 
           <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
-            <%= form_with model:@user,url:register_path,method: :post,:html => { :style => 'width:30em;' },data:{turbo:false} do |f| %>
+            <%= form_with model:@user,url:register_path,method: :post,:html => { :style => 'width:30em;' },data:{turbo:true} do |f| %>
             
 
               <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Sign Up</h3>
                  <%= render "layouts/form_error",:form => f %>
               <div class="form-outline mb-4 form-floating">
-                <input type="name" class="form-control" id="floatingInput" name="user[name]" placeholder="name@example.com">
-                <label for="floatingInput">Name</label>
+                <input type="name" class="form-control" id="floatingName" name="user[name]" placeholder="name@example.com">
+                <label for="floatingName">Name</label>
               </div>
               <div class="form-outline mb-4 form-floating">
-                <input type="email" class="form-control" id="floatingInput" name="user[email]" placeholder="name@example.com">
-                <label for="floatingInput">Email address</label>
+                <input type="email" class="form-control" id="floatingEmail" name="user[email]" placeholder="name@example.com">
+                <label for="floatingEmail">Email address</label>
               </div>
 
               <div class="form-outline mb-4 form-floating">

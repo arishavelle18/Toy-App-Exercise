@@ -42,17 +42,21 @@ class MicropostsController < ApplicationController
     end
     
     def update
-        @micropost = Micropost.find_by(user_id:params[:micropost][:user_id])
-        
+        @micropost = Micropost.find_by(id:params[:id])
         if Current.user.id != @micropost[:user_id]
             redirect_to microposts_path,:alert => "Unauthorize Access"
         end
-        if @micropost.update(micropost_params)
-            flash[:notice] = "Micropost was successfully updated"
-            redirect_to micropost_path(@micropost)
-        else
-            render :edit
+        respond_to do |format|
+            # if the length of the image is less than one meaning no images it will run without image params  else micropost params
+            if params[:micropost][:images].length <=1? @micropost.update(micropost_params_without_image):@micropost.update(micropost_params)
+                flash[:notice] = "Micropost was successfully updated"
+                format.html { redirect_to micropost_path(@micropost) }
+               
+            else
+                format.html { render :edit , status: :unprocessable_entity}
+            end
         end
+       
     end
    
     # delete the acc
@@ -77,5 +81,8 @@ class MicropostsController < ApplicationController
 
     private def micropost_params
         params.require(:micropost).permit(:title,:content,:user_id,images:[]) 
+    end
+    private def micropost_params_without_image
+        params.require(:micropost).permit(:title,:content,:user_id)
     end
 end
