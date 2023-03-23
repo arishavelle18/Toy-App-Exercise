@@ -1,5 +1,6 @@
 class Micropost < ApplicationRecord
     belongs_to :user
+    before_save {self.title = title.titleize}
     validates :content, length: {maximum: 140}, presence:true
     # has_one_attached :image
     # multiple image upload

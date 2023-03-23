@@ -9,7 +9,7 @@ object-fit: fit;
 
 <% provide(:title,"Profile") %>
 <h1 class="mb-4">Profile</h1>
-<p>Name: <%= @user.name.titleize  %></p>
+<p>Name: <%= @user.name  %></p>
 <p>Email: <%= @user.email.capitalize  %></p>
 <% if @users != 0%>
 <%= link_to "New Micropost",profile_post_path, :class => "btn btn-success"%><br><br>
@@ -62,15 +62,15 @@ object-fit: fit;
                           <div class="accordion-item ">
                             <h2 class="accordion-header" id="flush-headingOne">
                               <button class="accordion-button collapsed " type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne<%= micropost.id%>" aria-expanded="false" aria-controls="flush-collapseOne">
-                                <strong class="text-center"> <%= (micropost.title).titleize  %></strong
+                                <strong class="text-center"> <%= (micropost.title)  %></strong
                               </button>
                             </h2>
                                 <div id="flush-collapseOne<%= micropost.id%>" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                                   <div class="accordion-body">
                                             <div class="card-body">
-                                                    <h5 class="card-title">Title: <%= micropost.title.titleize  %></h5>
+                                                    <h5 class="card-title">Title: <%= micropost.title  %></h5>
                                                     <p><%= micropost.content %></p>
-                                                    <p>Posted by: <%= micropost.user.name.titleize  %></p>
+                                                    <p>Posted by: <%= micropost.user.name  %></p>
                                                     <p>Created: <%= time_ago_in_words(micropost.created_at) %> ago</p>
                                                         <%=link_to "Show",micropost_path(micropost),:class => "btn btn-primary"%>
                                                     <% if Current.user.id == micropost.user_id %>
