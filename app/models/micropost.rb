@@ -4,11 +4,11 @@ class Micropost < ApplicationRecord
     validates :content, length: {maximum: 140}, presence:true
     # has_one_attached :image
     # multiple image upload
-    has_many_attached :images
+    # has_many_attached :images
     validates :title, length: {maximum: 80},presence:true
 
     # validates :image,content_type: {in: %(.jpeg .png .jpg), message:"Must be in JPG, JPEG, or PNG format"}
-    validates :images,blob:{ content_type: ['image/png', 'image/jpg', 'image/jpeg'],size_range: 1..(5.megabytes)}
+    # validates :images,blob:{ content_type: ['image/png', 'image/jpg', 'image/jpeg'],size_range: 1..(5.megabytes)}
     def image_as_thumbnail
         return unless image.content_type.in?(%w[image/jpeg image/png])
         image.variant(resize_to_limit:[300,300]).processed

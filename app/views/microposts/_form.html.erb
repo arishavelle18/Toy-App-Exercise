@@ -1,5 +1,5 @@
 
-<%= form_for @micropost, url: set_up,data: { turbo: true } do |f|%>
+<%= form_for @micropost, url: set_up,data: { turbo: false } do |f|%>
     <%= render "layouts/form_error",:form =>f %>
     <p>
         <%= f.label :title%><br>

@@ -15,9 +15,27 @@ class MicropostsController < ApplicationController
     # create the post
     def create
         @micropost = Micropost.new(micropost_params)
-       
+        # render plain:params[:micropost][:images]
+        
         respond_to do |format|
             if @micropost.save
+
+                 # check if the image is present or not
+                if !params[:micropost][:images].nil?
+                    # add image
+                    images = JSON.parse(@micropost[:images].to_json)
+                    hello = ""
+                    params[:micropost][:images].each do |image|
+                        hello = image
+                        if !image.blank?
+                            result = Cloudinary::Uploader.upload(image)
+                            # push
+                            images["images"] << result["public_id"]
+                        end
+                    end
+                    @micropost[:images] = images.to_json
+                    @micropost.save
+                end
                 flash[:notice] = "Micropost was successfully created"
                 format.html {redirect_to microposts_path}
                 # redirect_to microposts_path
@@ -80,7 +98,7 @@ class MicropostsController < ApplicationController
     end
 
     private def micropost_params
-        params.require(:micropost).permit(:title,:content,:user_id,images:[]) 
+        params.require(:micropost).permit(:title,:content,:user_id) 
     end
     private def micropost_params_without_image
         params.require(:micropost).permit(:title,:content,:user_id)

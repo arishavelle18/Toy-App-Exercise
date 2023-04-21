@@ -17,7 +17,7 @@ class User < ApplicationRecord
     
     # add password
     has_secure_password
-    validates :password_digest,presence:true
+    validates :password_confirmation,presence:true
     validates :password,presence:true,length:{minimum:6}
 
     def User.digest(string)

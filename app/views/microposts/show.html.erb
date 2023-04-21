@@ -36,22 +36,23 @@ object-fit: fit;
     <div id="carouselExampleRide<%= @micropost.id %>" class="carousel slide" style="width:300px;" data-bs-ride="true">
                         <div class="carousel-inner">
                               <% count = 0 %>
-                              <% @micropost.images.each do |picture| %>
+                              <% JSON.parse(@micropost.images)["images"] do |picture| %>
                                 <% count += 1 %>
                                 <% if count == 1%>
                                   <div class="carousel-item active embed-responsive embed-responsive-16by9">
-                                    <%= image_tag(@micropost.picture_as_thumbnail(picture),:class=>"d-block w-100 img-fluid card-img-top embed-responsive-item") %>
-                                    
+                                    <%# image_tag(@micropost.picture_as_thumbnail(picture),:class=>"d-block w-100 img-fluid card-img-top embed-responsive-item") %>
+                                    <%= !@micropost.images.nil? ? cl_image_tag(picture , :width=>200, :crop=>"fill"):cl_image_tag("no_rpqcih", :width=>200, :crop=>"fill") %>
                                   </div>
                                 <% else %>
                                   <div class="carousel-item embed-responsive embed-responsive-16by9">
-                                    <%= image_tag(@micropost.picture_as_thumbnail(picture),:class=>"d-block w-100 img-fluid card-img-top embed-responsive-item") %>
+                                    <%# image_tag(@micropost.picture_as_thumbnail(picture),:class=>"d-block w-100 img-fluid card-img-top embed-responsive-item") %>
+                                    <%= !@micropost.images.nil? ? cl_image_tag(picture , :width=>200, :crop=>"fill"):cl_image_tag("no_rpqcih", :width=>200, :crop=>"fill") %>
                                   </div>
                                 <% end %>
                               
                               <% end %>
                         </div>
-                        <% if @micropost.images.count > 1 %>
+                        <% if JSON.parse(@micropost.images)["images"].length > 1 %>
                           <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleRide<%= @micropost.id %>" data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Previous</span>

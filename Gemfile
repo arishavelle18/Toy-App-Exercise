@@ -62,6 +62,7 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+  gem 'graphiql-rails'
 end
 
 group :test do
@@ -83,3 +84,7 @@ gem "ruby-vips"
 gem "jsbundling-rails", "~> 1.1"
 
 gem "esbuild-rails", "~> 0.1.4"
+
+gem 'graphql', '>= 1.12.0'
+
+gem 'cloudinary'

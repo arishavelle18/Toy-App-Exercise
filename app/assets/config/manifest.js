@@ -5,3 +5,6 @@
 //= link application.js
 //= link importmap.json
 
+//= link graphiql/rails/application.css
+//= link graphiql/rails/application.js
+    
